@@ -108,3 +108,24 @@ export const toggleSessionStatus: RequestHandler = (req, res) => {
     res.status(500).json({ message: "Failed to update session status" });
   }
 };
+
+export const endSession: RequestHandler = (req, res) => {
+  try {
+    const { sessionId } = req.params;
+    const lecturer = (req as any).user;
+
+    const session = sessions.find(s => s.id === sessionId && s.lecturerId === lecturer.id);
+    if (!session) {
+      return res.status(404).json({ message: "Session not found" });
+    }
+
+    // Permanently end the session - set isActive to false and add an ended flag
+    session.isActive = false;
+    (session as any).isEnded = true;
+    (session as any).endedAt = new Date().toISOString();
+
+    res.json(session);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to end session" });
+  }
+};
