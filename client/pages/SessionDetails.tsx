@@ -364,6 +364,31 @@ export default function SessionDetails() {
                   <Download className="w-4 h-4 mr-2" />
                   Export Attendance
                 </Button>
+                {session.isActive && (
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="destructive" className="w-full">
+                        <StopCircle className="w-4 h-4 mr-2" />
+                        End Session
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>End Session</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Are you sure you want to permanently end this session? This action cannot be undone.
+                          Students will no longer be able to mark attendance, and the session will be marked as completed.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={endSession} className="bg-red-600 hover:bg-red-700">
+                          End Session
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
               </CardContent>
             </Card>
           </div>
