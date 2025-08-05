@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { QrCode, ArrowLeft, Copy, Share, Calendar, MapPin, Users, Download } from "lucide-react";
 import { ClassSession } from "@shared/types";
 import { useToast } from "@/hooks/use-toast";
-import QRCode from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function SessionDetails() {
   const { sessionId } = useParams();
