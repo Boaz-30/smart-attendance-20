@@ -1,9 +1,9 @@
 import { RequestHandler } from "express";
 import { ClassSession, CreateSessionRequest } from "@shared/types";
+import { sessions, currentSessionId, addSession } from "./sessions-data";
 
-// In-memory storage for demo purposes
-let sessions: ClassSession[] = [];
-let currentSessionId = 1;
+// Use shared session storage
+let sessionIdCounter = currentSessionId;
 
 const generateSessionCode = (): string => {
   return Math.random().toString(36).substring(2, 8).toUpperCase();
