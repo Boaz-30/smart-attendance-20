@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleRegister, handleLogin, authenticateToken } from "./routes/auth";
-import { createSession, getLecturerSessions, getSession, getSessionByCode, toggleSessionStatus } from "./routes/sessions";
+import { createSession, getLecturerSessions, getSession, getSessionByCode, toggleSessionStatus, endSession } from "./routes/sessions";
 import { markAttendance, getSessionAttendance, exportAttendance } from "./routes/attendance";
 
 export function createServer() {
