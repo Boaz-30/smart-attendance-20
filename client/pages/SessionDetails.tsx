@@ -219,8 +219,8 @@ export default function SessionDetails() {
             </CardHeader>
             <CardContent className="text-center space-y-6">
               <div className="bg-white p-6 rounded-lg border inline-block">
-                <QRCode 
-                  value={getAttendanceUrl()} 
+                <QRCodeSVG
+                  value={getAttendanceUrl()}
                   size={200}
                   level="M"
                   includeMargin={true}
