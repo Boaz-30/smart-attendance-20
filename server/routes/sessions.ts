@@ -16,7 +16,7 @@ export const createSession: RequestHandler = (req, res) => {
 
     const sessionCode = generateSessionCode();
     const session: ClassSession = {
-      id: currentSessionId.toString(),
+      id: sessionIdCounter.toString(),
       lecturerId: lecturer.id,
       title,
       courseName,
@@ -28,8 +28,8 @@ export const createSession: RequestHandler = (req, res) => {
       isActive: true,
     };
 
-    sessions.push(session);
-    currentSessionId++;
+    addSession(session);
+    sessionIdCounter++;
 
     res.status(201).json(session);
   } catch (error) {
