@@ -27,30 +27,34 @@ SmartAttend is a modern, GPS-enabled attendance tracking system that revolutioni
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 - Modern web browser with GPS support
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd smart-attendance-20
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env
    # Edit .env with your configuration
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -63,6 +67,7 @@ SmartAttend is a modern, GPS-enabled attendance tracking system that revolutioni
 ## 🏗️ Tech Stack
 
 ### Frontend
+
 - **React 18** - Modern React with hooks and concurrent features
 - **TypeScript** - Type-safe development
 - **Vite** - Fast build tool and dev server
@@ -75,6 +80,7 @@ SmartAttend is a modern, GPS-enabled attendance tracking system that revolutioni
 - **Lucide React** - Beautiful icons
 
 ### Backend
+
 - **Express.js** - Web application framework
 - **Node.js** - JavaScript runtime
 - **TypeScript** - Type-safe server development
@@ -82,6 +88,7 @@ SmartAttend is a modern, GPS-enabled attendance tracking system that revolutioni
 - **dotenv** - Environment variable management
 
 ### Development Tools
+
 - **Vite** - Build tool and dev server
 - **ESLint** - Code linting
 - **Prettier** - Code formatting
@@ -123,16 +130,19 @@ smart-attendance-20/
 ### For Lecturers
 
 1. **Registration & Login**
+
    - Create an account at `/register`
    - Login at `/login` with your credentials
 
 2. **Create a Session**
+
    - Navigate to Dashboard → "Create New Session"
    - Fill in class details (title, course, date/time)
    - Set classroom location using GPS
    - Define attendance radius (recommended: 50m)
 
 3. **Share with Students**
+
    - View the generated QR code
    - Share the QR code or attendance link
    - Monitor real-time attendance
@@ -146,10 +156,12 @@ smart-attendance-20/
 ### For Students
 
 1. **Access Attendance**
+
    - Scan the QR code provided by lecturer
    - Or visit the shared attendance link
 
 2. **Mark Attendance**
+
    - Enter your full name
    - Provide student index number
    - Allow GPS location access
@@ -279,11 +291,13 @@ npm run typecheck
 ## 📋 Features Roadmap
 
 - [ ] **Enhanced Security**
+
   - JWT token refresh mechanism
   - Password reset functionality
   - Two-factor authentication
 
 - [ ] **Advanced Features**
+
   - Facial recognition integration
   - Bulk student import
   - Analytics dashboard
@@ -308,6 +322,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Boaz Kwabena Kyei**
+
 - GitHub: [@Boaz-30](https://github.com/Boaz-30)
 
 ## 🙏 Acknowledgments
