@@ -144,6 +144,39 @@ export default function SessionDetails() {
     }
   };
 
+  const endSession = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/sessions/${sessionId}/end`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const updatedSession = await response.json();
+        setSession(updatedSession);
+        toast({
+          title: "Session ended",
+          description: "The session has been permanently ended",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to end session",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        variant: "destructive",
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
