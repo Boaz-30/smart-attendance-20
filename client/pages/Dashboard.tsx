@@ -1,9 +1,24 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { QrCode, Plus, Users, Calendar, MapPin, LogOut, Settings, Download } from "lucide-react";
+import {
+  QrCode,
+  Plus,
+  Users,
+  Calendar,
+  MapPin,
+  LogOut,
+  Settings,
+  Download,
+} from "lucide-react";
 import { ClassSession } from "@shared/types";
 import { useToast } from "@/hooks/use-toast";
 
@@ -103,7 +118,9 @@ export default function Dashboard() {
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Sessions</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Total Sessions
+              </CardTitle>
               <Calendar className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -113,12 +130,14 @@ export default function Dashboard() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Sessions</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Active Sessions
+              </CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {sessions.filter(s => s.isActive).length}
+                {sessions.filter((s) => s.isActive).length}
               </div>
               <p className="text-xs text-muted-foreground">Currently running</p>
             </CardContent>
@@ -130,12 +149,14 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {sessions.filter(s => {
-                  const sessionDate = new Date(s.datetime);
-                  const weekAgo = new Date();
-                  weekAgo.setDate(weekAgo.getDate() - 7);
-                  return sessionDate > weekAgo;
-                }).length}
+                {
+                  sessions.filter((s) => {
+                    const sessionDate = new Date(s.datetime);
+                    const weekAgo = new Date();
+                    weekAgo.setDate(weekAgo.getDate() - 7);
+                    return sessionDate > weekAgo;
+                  }).length
+                }
               </div>
               <p className="text-xs text-muted-foreground">Sessions created</p>
             </CardContent>
@@ -158,8 +179,10 @@ export default function Dashboard() {
 
         {/* Sessions List */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800">Your Class Sessions</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-800">
+            Your Class Sessions
+          </h2>
+
           {sessions.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">
@@ -181,16 +204,23 @@ export default function Dashboard() {
           ) : (
             <div className="grid gap-4">
               {sessions.map((session) => (
-                <Card key={session.id} className="hover:shadow-md transition-shadow">
+                <Card
+                  key={session.id}
+                  className="hover:shadow-md transition-shadow"
+                >
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div>
-                        <CardTitle className="text-lg">{session.title}</CardTitle>
+                        <CardTitle className="text-lg">
+                          {session.title}
+                        </CardTitle>
                         <CardDescription className="text-base">
                           {session.courseName}
                         </CardDescription>
                       </div>
-                      <Badge variant={session.isActive ? "default" : "secondary"}>
+                      <Badge
+                        variant={session.isActive ? "default" : "secondary"}
+                      >
                         {session.isActive ? "Active" : "Completed"}
                       </Badge>
                     </div>
@@ -200,7 +230,9 @@ export default function Dashboard() {
                       <div className="space-y-2">
                         <div className="flex items-center space-x-2 text-sm text-gray-600">
                           <Calendar className="w-4 h-4" />
-                          <span>{new Date(session.datetime).toLocaleString()}</span>
+                          <span>
+                            {new Date(session.datetime).toLocaleString()}
+                          </span>
                         </div>
                         <div className="flex items-center space-x-2 text-sm text-gray-600">
                           <MapPin className="w-4 h-4" />

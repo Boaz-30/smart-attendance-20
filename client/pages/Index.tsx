@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { QrCode, MapPin, Users, Shield, Clock, Download } from "lucide-react";
 
 export default function Index() {
@@ -35,9 +41,9 @@ export default function Index() {
             Smart Attendance Record System
           </h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            Revolutionize attendance tracking with QR codes and GPS verification. 
-            Ensure students are physically present in class with our secure, 
-            location-based attendance system.
+            Revolutionize attendance tracking with QR codes and GPS
+            verification. Ensure students are physically present in class with
+            our secure, location-based attendance system.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/register">
@@ -72,8 +78,8 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Lecturers can quickly create and share QR codes that students can scan 
-                to mark their attendance with ease.
+                Lecturers can quickly create and share QR codes that students
+                can scan to mark their attendance with ease.
               </p>
             </CardContent>
           </Card>
@@ -90,7 +96,7 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Advanced GPS technology verifies student location to prevent 
+                Advanced GPS technology verifies student location to prevent
                 fraudulent attendance marking from remote locations.
               </p>
             </CardContent>
@@ -108,8 +114,8 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                View live attendance updates and get instant insights into 
-                class participation rates and student presence.
+                View live attendance updates and get instant insights into class
+                participation rates and student presence.
               </p>
             </CardContent>
           </Card>
@@ -126,8 +132,8 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Secure login system ensures only authorized lecturers can 
-                create sessions and view attendance data.
+                Secure login system ensures only authorized lecturers can create
+                sessions and view attendance data.
               </p>
             </CardContent>
           </Card>
@@ -144,8 +150,8 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Configure specific time frames when students can mark attendance, 
-                preventing late or early submissions.
+                Configure specific time frames when students can mark
+                attendance, preventing late or early submissions.
               </p>
             </CardContent>
           </Card>
@@ -162,7 +168,7 @@ export default function Index() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Export attendance records as CSV or Excel files for easy 
+                Export attendance records as CSV or Excel files for easy
                 integration with existing systems and record keeping.
               </p>
             </CardContent>
@@ -178,67 +184,103 @@ export default function Index() {
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-blue-600">For Lecturers</h3>
+              <h3 className="text-2xl font-bold mb-6 text-blue-600">
+                For Lecturers
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    1
+                  </div>
                   <div>
                     <h4 className="font-semibold">Register & Login</h4>
-                    <p className="text-gray-600">Create your account and log into the system</p>
+                    <p className="text-gray-600">
+                      Create your account and log into the system
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    2
+                  </div>
                   <div>
                     <h4 className="font-semibold">Create Class Session</h4>
-                    <p className="text-gray-600">Set up your class with location and time details</p>
+                    <p className="text-gray-600">
+                      Set up your class with location and time details
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    3
+                  </div>
                   <div>
                     <h4 className="font-semibold">Generate QR Code</h4>
-                    <p className="text-gray-600">Get a unique QR code and link to share with students</p>
+                    <p className="text-gray-600">
+                      Get a unique QR code and link to share with students
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">4</div>
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    4
+                  </div>
                   <div>
                     <h4 className="font-semibold">Monitor & Export</h4>
-                    <p className="text-gray-600">View real-time attendance and download reports</p>
+                    <p className="text-gray-600">
+                      View real-time attendance and download reports
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-green-600">For Students</h3>
+              <h3 className="text-2xl font-bold mb-6 text-green-600">
+                For Students
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    1
+                  </div>
                   <div>
                     <h4 className="font-semibold">Scan QR Code</h4>
-                    <p className="text-gray-600">Use your phone to scan the attendance QR code</p>
+                    <p className="text-gray-600">
+                      Use your phone to scan the attendance QR code
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    2
+                  </div>
                   <div>
                     <h4 className="font-semibold">Enter Details</h4>
-                    <p className="text-gray-600">Provide your name and student index number</p>
+                    <p className="text-gray-600">
+                      Provide your name and student index number
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    3
+                  </div>
                   <div>
                     <h4 className="font-semibold">Allow GPS</h4>
-                    <p className="text-gray-600">Grant location permission for verification</p>
+                    <p className="text-gray-600">
+                      Grant location permission for verification
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">4</div>
+                  <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    4
+                  </div>
                   <div>
                     <h4 className="font-semibold">Mark Attendance</h4>
-                    <p className="text-gray-600">Confirm your presence if within the class location</p>
+                    <p className="text-gray-600">
+                      Confirm your presence if within the class location
+                    </p>
                   </div>
                 </div>
               </div>
@@ -257,7 +299,8 @@ export default function Index() {
             <h3 className="text-xl font-bold">SmartAttend</h3>
           </div>
           <p className="text-gray-400 mb-4">
-            Smart Attendance Record System with Geolocation and QR Code Technology
+            Smart Attendance Record System with Geolocation and QR Code
+            Technology
           </p>
           <p className="text-gray-500 text-sm">
             © 2024 SmartAttend. All rights reserved.

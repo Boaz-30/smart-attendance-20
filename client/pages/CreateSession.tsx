@@ -1,11 +1,24 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { QrCode, ArrowLeft, MapPin, Calendar, Clock, Users } from "lucide-react";
+import {
+  QrCode,
+  ArrowLeft,
+  MapPin,
+  Calendar,
+  Clock,
+  Users,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function CreateSession() {
@@ -14,7 +27,10 @@ export default function CreateSession() {
   const [datetime, setDatetime] = useState("");
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState("50");
-  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [location, setLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
   const [loading, setLoading] = useState(false);
   const [gettingLocation, setGettingLocation] = useState(false);
   const navigate = useNavigate();
@@ -22,7 +38,7 @@ export default function CreateSession() {
 
   const getCurrentLocation = () => {
     setGettingLocation(true);
-    
+
     if (!navigator.geolocation) {
       toast({
         title: "Geolocation not supported",
@@ -39,10 +55,12 @@ export default function CreateSession() {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         });
-        
+
         // Reverse geocoding would go here in a real app
-        setAddress(`Lat: ${position.coords.latitude.toFixed(6)}, Lng: ${position.coords.longitude.toFixed(6)}`);
-        
+        setAddress(
+          `Lat: ${position.coords.latitude.toFixed(6)}, Lng: ${position.coords.longitude.toFixed(6)}`,
+        );
+
         toast({
           title: "Location captured",
           description: "Current location has been set for this session",
@@ -52,11 +70,12 @@ export default function CreateSession() {
       (error) => {
         toast({
           title: "Location error",
-          description: "Could not get your current location. Please enter address manually.",
+          description:
+            "Could not get your current location. Please enter address manually.",
           variant: "destructive",
         });
         setGettingLocation(false);
-      }
+      },
     );
   };
 
@@ -66,7 +85,8 @@ export default function CreateSession() {
     if (!location) {
       toast({
         title: "Location required",
-        description: "Please set the class location before creating the session",
+        description:
+          "Please set the class location before creating the session",
         variant: "destructive",
       });
       return;
@@ -135,7 +155,9 @@ export default function CreateSession() {
             <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
               <QrCode className="w-5 h-5 text-white" />
             </div>
-            <h1 className="text-xl font-bold text-gray-800">Create New Session</h1>
+            <h1 className="text-xl font-bold text-gray-800">
+              Create New Session
+            </h1>
           </div>
         </div>
       </header>
@@ -157,7 +179,7 @@ export default function CreateSession() {
                     <Users className="w-5 h-5 mr-2 text-blue-600" />
                     Basic Information
                   </h3>
-                  
+
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="title">Session Title</Label>
@@ -188,7 +210,7 @@ export default function CreateSession() {
                     <Calendar className="w-5 h-5 mr-2 text-green-600" />
                     Schedule
                   </h3>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="datetime">Date and Time</Label>
                     <Input
@@ -207,7 +229,7 @@ export default function CreateSession() {
                     <MapPin className="w-5 h-5 mr-2 text-red-600" />
                     Location
                   </h3>
-                  
+
                   <div className="space-y-4">
                     <div className="flex gap-2">
                       <Button
@@ -217,7 +239,9 @@ export default function CreateSession() {
                         disabled={gettingLocation}
                         className="whitespace-nowrap"
                       >
-                        {gettingLocation ? "Getting Location..." : "Use Current Location"}
+                        {gettingLocation
+                          ? "Getting Location..."
+                          : "Use Current Location"}
                       </Button>
                       {location && (
                         <div className="flex items-center text-sm text-green-600 bg-green-50 px-3 py-2 rounded-md">
@@ -261,7 +285,9 @@ export default function CreateSession() {
                 {/* Submit Button */}
                 <div className="flex justify-end space-x-4 pt-6">
                   <Link to="/dashboard">
-                    <Button variant="outline" type="button">Cancel</Button>
+                    <Button variant="outline" type="button">
+                      Cancel
+                    </Button>
                   </Link>
                   <Button type="submit" disabled={loading || !location}>
                     {loading ? "Creating..." : "Create Session"}

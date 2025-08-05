@@ -1,10 +1,36 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { QrCode, ArrowLeft, Copy, Share, Calendar, MapPin, Users, Download, StopCircle } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  QrCode,
+  ArrowLeft,
+  Copy,
+  Share,
+  Calendar,
+  MapPin,
+  Users,
+  Download,
+  StopCircle,
+} from "lucide-react";
 import { ClassSession } from "@shared/types";
 import { useToast } from "@/hooks/use-toast";
 import { QRCodeSVG } from "qrcode.react";
@@ -95,7 +121,7 @@ export default function SessionDetails() {
 
   const shareLink = async () => {
     const url = getAttendanceUrl();
-    
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -192,7 +218,9 @@ export default function SessionDetails() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Session not found</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Session not found
+          </h2>
           <Link to="/dashboard">
             <Button>Back to Dashboard</Button>
           </Link>
@@ -218,7 +246,9 @@ export default function SessionDetails() {
                 <QrCode className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-800">{session.title}</h1>
+                <h1 className="text-xl font-bold text-gray-800">
+                  {session.title}
+                </h1>
                 <p className="text-sm text-gray-600">{session.courseName}</p>
               </div>
             </div>
@@ -227,11 +257,7 @@ export default function SessionDetails() {
             <Badge variant={session.isActive ? "default" : "secondary"}>
               {session.isActive ? "Active" : "Inactive"}
             </Badge>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleSessionStatus}
-            >
+            <Button variant="outline" size="sm" onClick={toggleSessionStatus}>
               {session.isActive ? "Deactivate" : "Activate"}
             </Button>
           </div>
@@ -260,7 +286,7 @@ export default function SessionDetails() {
                   includeMargin={true}
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <p className="text-sm font-medium">Session Code:</p>
                 <div className="bg-gray-100 px-4 py-2 rounded-md font-mono text-lg">
@@ -277,10 +303,7 @@ export default function SessionDetails() {
                   <Copy className="w-4 h-4 mr-2" />
                   Copy Link
                 </Button>
-                <Button
-                  onClick={shareLink}
-                  className="flex-1"
-                >
+                <Button onClick={shareLink} className="flex-1">
                   <Share className="w-4 h-4 mr-2" />
                   Share
                 </Button>
@@ -291,7 +314,9 @@ export default function SessionDetails() {
                 <p>1. Scan the QR code or visit the shared link</p>
                 <p>2. Enter your name and student index</p>
                 <p>3. Allow location access when prompted</p>
-                <p>4. Confirm attendance if within {session.radius}m of class</p>
+                <p>
+                  4. Confirm attendance if within {session.radius}m of class
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -309,7 +334,9 @@ export default function SessionDetails() {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
-                    <div className="text-2xl font-bold text-blue-600">{attendanceCount}</div>
+                    <div className="text-2xl font-bold text-blue-600">
+                      {attendanceCount}
+                    </div>
                     <div className="text-sm text-gray-600">Present</div>
                   </div>
                   <div className="text-center p-4 bg-green-50 rounded-lg">
@@ -332,7 +359,9 @@ export default function SessionDetails() {
                   <Calendar className="w-5 h-5 text-gray-400 mt-0.5" />
                   <div>
                     <p className="font-medium">Date & Time</p>
-                    <p className="text-gray-600">{new Date(session.datetime).toLocaleString()}</p>
+                    <p className="text-gray-600">
+                      {new Date(session.datetime).toLocaleString()}
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -354,7 +383,10 @@ export default function SessionDetails() {
                 <CardTitle>Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <Link to={`/session/${sessionId}/attendance`} className="w-full">
+                <Link
+                  to={`/session/${sessionId}/attendance`}
+                  className="w-full"
+                >
                   <Button variant="outline" className="w-full">
                     <Users className="w-4 h-4 mr-2" />
                     View Attendance List
@@ -376,13 +408,18 @@ export default function SessionDetails() {
                       <AlertDialogHeader>
                         <AlertDialogTitle>End Session</AlertDialogTitle>
                         <AlertDialogDescription>
-                          Are you sure you want to permanently end this session? This action cannot be undone.
-                          Students will no longer be able to mark attendance, and the session will be marked as completed.
+                          Are you sure you want to permanently end this session?
+                          This action cannot be undone. Students will no longer
+                          be able to mark attendance, and the session will be
+                          marked as completed.
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={endSession} className="bg-red-600 hover:bg-red-700">
+                        <AlertDialogAction
+                          onClick={endSession}
+                          className="bg-red-600 hover:bg-red-700"
+                        >
                           End Session
                         </AlertDialogAction>
                       </AlertDialogFooter>

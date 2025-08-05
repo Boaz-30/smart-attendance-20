@@ -3,8 +3,19 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { handleRegister, handleLogin, authenticateToken } from "./routes/auth";
-import { createSession, getLecturerSessions, getSession, getSessionByCode, toggleSessionStatus, endSession } from "./routes/sessions";
-import { markAttendance, getSessionAttendance, exportAttendance } from "./routes/attendance";
+import {
+  createSession,
+  getLecturerSessions,
+  getSession,
+  getSessionByCode,
+  toggleSessionStatus,
+  endSession,
+} from "./routes/sessions";
+import {
+  markAttendance,
+  getSessionAttendance,
+  exportAttendance,
+} from "./routes/attendance";
 
 export function createServer() {
   const app = express();
@@ -30,14 +41,26 @@ export function createServer() {
   app.post("/api/sessions", authenticateToken, createSession);
   app.get("/api/sessions", authenticateToken, getLecturerSessions);
   app.get("/api/sessions/:sessionId", authenticateToken, getSession);
-  app.put("/api/sessions/:sessionId/toggle", authenticateToken, toggleSessionStatus);
+  app.put(
+    "/api/sessions/:sessionId/toggle",
+    authenticateToken,
+    toggleSessionStatus,
+  );
   app.put("/api/sessions/:sessionId/end", authenticateToken, endSession);
 
   // Attendance routes
   app.get("/api/attend/:sessionCode", getSessionByCode); // Public route for students
   app.post("/api/attendance", markAttendance); // Public route for students
-  app.get("/api/sessions/:sessionId/attendance", authenticateToken, getSessionAttendance);
-  app.get("/api/sessions/:sessionId/export", authenticateToken, exportAttendance);
+  app.get(
+    "/api/sessions/:sessionId/attendance",
+    authenticateToken,
+    getSessionAttendance,
+  );
+  app.get(
+    "/api/sessions/:sessionId/export",
+    authenticateToken,
+    exportAttendance,
+  );
 
   return app;
 }

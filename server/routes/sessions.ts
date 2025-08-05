@@ -11,7 +11,13 @@ const generateSessionCode = (): string => {
 
 export const createSession: RequestHandler = (req, res) => {
   try {
-    const { title, courseName, datetime, location, radius }: CreateSessionRequest = req.body;
+    const {
+      title,
+      courseName,
+      datetime,
+      location,
+      radius,
+    }: CreateSessionRequest = req.body;
     const lecturer = (req as any).user;
 
     const sessionCode = generateSessionCode();
@@ -24,7 +30,7 @@ export const createSession: RequestHandler = (req, res) => {
       location,
       radius,
       sessionCode,
-      qrCode: `${process.env.BASE_URL || 'http://localhost:8080'}/attend/${sessionCode}`,
+      qrCode: `${process.env.BASE_URL || "http://localhost:8080"}/attend/${sessionCode}`,
       isActive: true,
     };
 
@@ -40,11 +46,15 @@ export const createSession: RequestHandler = (req, res) => {
 export const getLecturerSessions: RequestHandler = (req, res) => {
   try {
     const lecturer = (req as any).user;
-    const lecturerSessions = sessions.filter(s => s.lecturerId === lecturer.id);
-    
+    const lecturerSessions = sessions.filter(
+      (s) => s.lecturerId === lecturer.id,
+    );
+
     // Sort by datetime, newest first
-    lecturerSessions.sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime());
-    
+    lecturerSessions.sort(
+      (a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime(),
+    );
+
     res.json(lecturerSessions);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch sessions" });
@@ -56,7 +66,9 @@ export const getSession: RequestHandler = (req, res) => {
     const { sessionId } = req.params;
     const lecturer = (req as any).user;
 
-    const session = sessions.find(s => s.id === sessionId && s.lecturerId === lecturer.id);
+    const session = sessions.find(
+      (s) => s.id === sessionId && s.lecturerId === lecturer.id,
+    );
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
     }
@@ -70,8 +82,8 @@ export const getSession: RequestHandler = (req, res) => {
 export const getSessionByCode: RequestHandler = (req, res) => {
   try {
     const { sessionCode } = req.params;
-    const session = sessions.find(s => s.sessionCode === sessionCode);
-    
+    const session = sessions.find((s) => s.sessionCode === sessionCode);
+
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
     }
@@ -97,7 +109,9 @@ export const toggleSessionStatus: RequestHandler = (req, res) => {
     const { sessionId } = req.params;
     const lecturer = (req as any).user;
 
-    const session = sessions.find(s => s.id === sessionId && s.lecturerId === lecturer.id);
+    const session = sessions.find(
+      (s) => s.id === sessionId && s.lecturerId === lecturer.id,
+    );
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
     }
@@ -114,7 +128,9 @@ export const endSession: RequestHandler = (req, res) => {
     const { sessionId } = req.params;
     const lecturer = (req as any).user;
 
-    const session = sessions.find(s => s.id === sessionId && s.lecturerId === lecturer.id);
+    const session = sessions.find(
+      (s) => s.id === sessionId && s.lecturerId === lecturer.id,
+    );
     if (!session) {
       return res.status(404).json({ message: "Session not found" });
     }

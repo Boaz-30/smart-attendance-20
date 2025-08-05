@@ -1,10 +1,30 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ArrowLeft, Download, Users, Clock, MapPin, RefreshCw } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  ArrowLeft,
+  Download,
+  Users,
+  Clock,
+  MapPin,
+  RefreshCw,
+} from "lucide-react";
 import { AttendanceRecord, ClassSession } from "@shared/types";
 import { useToast } from "@/hooks/use-toast";
 
@@ -26,7 +46,7 @@ export default function AttendanceList() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("token");
-      
+
       // Fetch session details
       const sessionResponse = await fetch(`/api/sessions/${sessionId}`, {
         headers: {
@@ -48,11 +68,14 @@ export default function AttendanceList() {
       }
 
       // Fetch attendance records
-      const attendanceResponse = await fetch(`/api/sessions/${sessionId}/attendance`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const attendanceResponse = await fetch(
+        `/api/sessions/${sessionId}/attendance`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
 
       if (attendanceResponse.ok) {
         const attendanceData = await attendanceResponse.json();
@@ -122,14 +145,14 @@ export default function AttendanceList() {
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = `attendance-${session?.title}-${new Date().toISOString().split('T')[0]}.csv`;
+        a.download = `attendance-${session?.title}-${new Date().toISOString().split("T")[0]}.csv`;
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
-        
+
         toast({
           title: "Export successful",
           description: "Attendance data downloaded",
@@ -165,7 +188,9 @@ export default function AttendanceList() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Session not found</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Session not found
+          </h2>
           <Link to="/dashboard">
             <Button>Back to Dashboard</Button>
           </Link>
@@ -187,8 +212,12 @@ export default function AttendanceList() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-xl font-bold text-gray-800">{session.title}</h1>
-              <p className="text-sm text-gray-600">{session.courseName} - Attendance List</p>
+              <h1 className="text-xl font-bold text-gray-800">
+                {session.title}
+              </h1>
+              <p className="text-sm text-gray-600">
+                {session.courseName} - Attendance List
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -204,31 +233,41 @@ export default function AttendanceList() {
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Present</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Total Present
+              </CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{attendance.length}</div>
-              <p className="text-xs text-muted-foreground">Students marked present</p>
+              <p className="text-xs text-muted-foreground">
+                Students marked present
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Valid Records</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Valid Records
+              </CardTitle>
               <MapPin className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {attendance.filter(record => record.isValid).length}
+                {attendance.filter((record) => record.isValid).length}
               </div>
-              <p className="text-xs text-muted-foreground">Within location radius</p>
+              <p className="text-xs text-muted-foreground">
+                Within location radius
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Session Time</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                Session Time
+              </CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -249,7 +288,9 @@ export default function AttendanceList() {
             disabled={refreshing}
             variant="outline"
           >
-            <RefreshCw className={`w-4 h-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw
+              className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+            />
             {refreshing ? "Refreshing..." : "Refresh"}
           </Button>
           <Button onClick={exportAttendance} variant="outline">
@@ -270,7 +311,9 @@ export default function AttendanceList() {
             {attendance.length === 0 ? (
               <div className="text-center py-12">
                 <Users className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-600 mb-2">No attendance records yet</h3>
+                <h3 className="text-lg font-semibold text-gray-600 mb-2">
+                  No attendance records yet
+                </h3>
                 <p className="text-gray-500">
                   Students will appear here once they mark their attendance
                 </p>
@@ -298,12 +341,15 @@ export default function AttendanceList() {
                           {new Date(record.timestamp).toLocaleString()}
                         </TableCell>
                         <TableCell>
-                          <Badge variant={record.isValid ? "default" : "destructive"}>
+                          <Badge
+                            variant={record.isValid ? "default" : "destructive"}
+                          >
                             {record.isValid ? "Valid" : "Invalid"}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-sm text-gray-600">
-                          {record.location.latitude.toFixed(6)}, {record.location.longitude.toFixed(6)}
+                          {record.location.latitude.toFixed(6)},{" "}
+                          {record.location.longitude.toFixed(6)}
                         </TableCell>
                       </TableRow>
                     ))}

@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { QrCode, Mail, Lock, User, ArrowLeft } from "lucide-react";
@@ -69,8 +75,8 @@ export default function Register() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center mb-8">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center space-x-3 text-gray-600 hover:text-gray-800 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -87,9 +93,7 @@ export default function Register() {
             </div>
             <div>
               <CardTitle className="text-2xl">Create Account</CardTitle>
-              <CardDescription>
-                Join SmartAttend as a lecturer
-              </CardDescription>
+              <CardDescription>Join SmartAttend as a lecturer</CardDescription>
             </div>
           </CardHeader>
           <CardContent>
@@ -154,19 +158,15 @@ export default function Register() {
                   />
                 </div>
               </div>
-              <Button 
-                type="submit" 
-                className="w-full" 
-                disabled={loading}
-              >
+              <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Already have an account?{" "}
-                <Link 
-                  to="/login" 
+                <Link
+                  to="/login"
                   className="text-blue-600 hover:underline font-medium"
                 >
                   Sign in here

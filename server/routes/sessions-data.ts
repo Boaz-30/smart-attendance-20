@@ -9,9 +9,9 @@ export const addSession = (session: ClassSession) => {
 };
 
 export const getSessionById = (id: string) => {
-  return sessions.find(s => s.id === id);
+  return sessions.find((s) => s.id === id);
 };
 
 export const getSessionByCode = (code: string) => {
-  return sessions.find(s => s.sessionCode === code);
+  return sessions.find((s) => s.sessionCode === code);
 };

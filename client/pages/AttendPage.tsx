@@ -1,11 +1,25 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { QrCode, MapPin, User, Hash, CheckCircle, AlertCircle, Clock } from "lucide-react";
+import {
+  QrCode,
+  MapPin,
+  User,
+  Hash,
+  CheckCircle,
+  AlertCircle,
+  Clock,
+} from "lucide-react";
 import { ClassSession } from "@shared/types";
 import { useToast } from "@/hooks/use-toast";
 
@@ -18,7 +32,10 @@ export default function AttendPage() {
   const [submitted, setSubmitted] = useState(false);
   const [studentName, setStudentName] = useState("");
   const [indexNumber, setIndexNumber] = useState("");
-  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [location, setLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
   const [locationError, setLocationError] = useState("");
   const [gettingLocation, setGettingLocation] = useState(false);
 
@@ -31,11 +48,11 @@ export default function AttendPage() {
   const fetchSession = async () => {
     try {
       const response = await fetch(`/api/attend/${sessionCode}`);
-      
+
       if (response.ok) {
         const data = await response.json();
         setSession(data);
-        
+
         if (!data.isActive) {
           toast({
             title: "Session Closed",
@@ -64,7 +81,7 @@ export default function AttendPage() {
   const getCurrentLocation = () => {
     setGettingLocation(true);
     setLocationError("");
-    
+
     if (!navigator.geolocation) {
       setLocationError("Geolocation is not supported by your browser");
       setGettingLocation(false);
@@ -87,7 +104,8 @@ export default function AttendPage() {
         let message = "Could not get your location";
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            message = "Location access was denied. Please allow location access and try again.";
+            message =
+              "Location access was denied. Please allow location access and try again.";
             break;
           case error.POSITION_UNAVAILABLE:
             message = "Location information is unavailable.";
@@ -102,22 +120,27 @@ export default function AttendPage() {
       {
         enableHighAccuracy: true,
         timeout: 10000,
-        maximumAge: 0
-      }
+        maximumAge: 0,
+      },
     );
   };
 
-  const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number): number => {
+  const calculateDistance = (
+    lat1: number,
+    lon1: number,
+    lat2: number,
+    lon2: number,
+  ): number => {
     const R = 6371e3; // Earth's radius in meters
-    const φ1 = lat1 * Math.PI/180;
-    const φ2 = lat2 * Math.PI/180;
-    const Δφ = (lat2-lat1) * Math.PI/180;
-    const Δλ = (lon2-lon1) * Math.PI/180;
+    const φ1 = (lat1 * Math.PI) / 180;
+    const φ2 = (lat2 * Math.PI) / 180;
+    const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+    const Δλ = ((lon2 - lon1) * Math.PI) / 180;
 
-    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-              Math.cos(φ1) * Math.cos(φ2) *
-              Math.sin(Δλ/2) * Math.sin(Δλ/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const a =
+      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     return R * c;
   };
@@ -141,7 +164,7 @@ export default function AttendPage() {
       location.latitude,
       location.longitude,
       session.location.latitude,
-      session.location.longitude
+      session.location.longitude,
     );
 
     if (distance > session.radius) {
@@ -212,7 +235,9 @@ export default function AttendPage() {
         <Card className="w-full max-w-md">
           <CardContent className="py-12 text-center">
             <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Session Not Found</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              Session Not Found
+            </h2>
             <p className="text-gray-600">
               The attendance link is invalid or the session has expired.
             </p>
@@ -228,14 +253,23 @@ export default function AttendPage() {
         <Card className="w-full max-w-md">
           <CardContent className="py-12 text-center">
             <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Attendance Recorded</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              Attendance Recorded
+            </h2>
             <p className="text-gray-600 mb-4">
-              Your attendance for <strong>{session.title}</strong> has been successfully recorded.
+              Your attendance for <strong>{session.title}</strong> has been
+              successfully recorded.
             </p>
             <div className="bg-green-50 p-4 rounded-lg text-sm text-green-800">
-              <p><strong>Course:</strong> {session.courseName}</p>
-              <p><strong>Time:</strong> {new Date().toLocaleString()}</p>
-              <p><strong>Student:</strong> {studentName} ({indexNumber})</p>
+              <p>
+                <strong>Course:</strong> {session.courseName}
+              </p>
+              <p>
+                <strong>Time:</strong> {new Date().toLocaleString()}
+              </p>
+              <p>
+                <strong>Student:</strong> {studentName} ({indexNumber})
+              </p>
             </div>
           </CardContent>
         </Card>
@@ -253,7 +287,9 @@ export default function AttendPage() {
               <QrCode className="w-8 h-8 text-white" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">Mark Attendance</h1>
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">
+            Mark Attendance
+          </h1>
           <p className="text-gray-600">{session.title}</p>
           <p className="text-sm text-gray-500">{session.courseName}</p>
         </div>
@@ -263,7 +299,8 @@ export default function AttendPage() {
           <Alert className="mb-6 border-orange-200 bg-orange-50">
             <Clock className="h-4 w-4" />
             <AlertDescription className="text-orange-800">
-              This session is currently inactive. You may not be able to mark attendance.
+              This session is currently inactive. You may not be able to mark
+              attendance.
             </AlertDescription>
           </Alert>
         )}
@@ -311,7 +348,7 @@ export default function AttendPage() {
 
               <div className="space-y-3">
                 <Label>Location Verification</Label>
-                
+
                 <Button
                   type="button"
                   variant="outline"
@@ -320,8 +357,11 @@ export default function AttendPage() {
                   className="w-full"
                 >
                   <MapPin className="w-4 h-4 mr-2" />
-                  {gettingLocation ? "Getting Location..." : 
-                   location ? "Location Captured ✓" : "Allow Location Access"}
+                  {gettingLocation
+                    ? "Getting Location..."
+                    : location
+                      ? "Location Captured ✓"
+                      : "Allow Location Access"}
                 </Button>
 
                 {locationError && (
@@ -336,15 +376,18 @@ export default function AttendPage() {
                 {location && (
                   <div className="bg-green-50 p-3 rounded-md text-sm text-green-800">
                     <p className="font-medium mb-1">Location Requirements:</p>
-                    <p>• You must be within {session.radius} meters of the classroom</p>
+                    <p>
+                      • You must be within {session.radius} meters of the
+                      classroom
+                    </p>
                     <p>• Location: {session.location.address}</p>
                   </div>
                 )}
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full" 
+              <Button
+                type="submit"
+                className="w-full"
                 disabled={submitting || !location || !session.isActive}
               >
                 {submitting ? "Marking Attendance..." : "Mark Attendance"}

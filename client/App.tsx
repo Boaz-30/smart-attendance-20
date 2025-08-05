@@ -31,7 +31,10 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/create-session" element={<CreateSession />} />
           <Route path="/session/:sessionId" element={<SessionDetails />} />
-          <Route path="/session/:sessionId/attendance" element={<AttendanceList />} />
+          <Route
+            path="/session/:sessionId/attendance"
+            element={<AttendanceList />}
+          />
           <Route path="/attend/:sessionCode" element={<AttendPage />} />
           <Route path="/attend" element={<AttendPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
