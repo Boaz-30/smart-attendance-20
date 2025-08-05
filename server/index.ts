@@ -31,6 +31,7 @@ export function createServer() {
   app.get("/api/sessions", authenticateToken, getLecturerSessions);
   app.get("/api/sessions/:sessionId", authenticateToken, getSession);
   app.put("/api/sessions/:sessionId/toggle", authenticateToken, toggleSessionStatus);
+  app.put("/api/sessions/:sessionId/end", authenticateToken, endSession);
 
   // Attendance routes
   app.get("/api/attend/:sessionCode", getSessionByCode); // Public route for students
